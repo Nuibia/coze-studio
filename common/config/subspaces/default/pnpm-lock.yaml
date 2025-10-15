@@ -17997,6 +17997,9 @@ importers:
 
   ../../../frontend/packages/project-ide/ui-adapter:
     dependencies:
+      '@coze-arch/coze-design':
+        specifier: 0.0.6-alpha.eec92c
+        version: 0.0.6-alpha.eec92c(@types/react@18.2.37)(acorn@8.15.0)(react-dom@18.2.0)(react@18.2.0)
       '@coze-project-ide/base-interface':
         specifier: workspace:*
         version: link:../base-interface

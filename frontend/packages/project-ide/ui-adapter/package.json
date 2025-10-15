@@ -13,6 +13,7 @@
     "test:cov": "npm run test -- --coverage"
   },
   "dependencies": {
+    "@coze-arch/coze-design": "0.0.6-alpha.346d77",
     "@coze-project-ide/base-interface": "workspace:*",
     "react": "~18.2.0"
   },

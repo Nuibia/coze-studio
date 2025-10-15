@@ -14,5 +14,40 @@
  * limitations under the License.
  */
 
-// The @file open source version does not provide user interface functions for the time being. The methods exported in this file are for future expansion.
-export const ModeTab = () => null;
+// The @file open source version does not provide UI functions currently.
+// The methods exported in this file are for future expansion.
+import React, { useState } from 'react';
+
+import { IconCozWorkflow, IconCozPalette } from '@coze-arch/coze-design/icons';
+import { SegmentTab, Radio } from '@coze-arch/coze-design';
+
+enum Mode {
+  BusinessLogic = 1,
+  UserInterface = 2,
+}
+
+export const ModeTab = () => {
+  const [value, setValue] = useState(Mode.BusinessLogic);
+  return (
+    <SegmentTab
+      value={value}
+      onChange={e => {
+        console.log('选中值:', e);
+        setValue(e.target.value);
+      }}
+    >
+      <Radio value={Mode.BusinessLogic}>
+        <div className="flex items-center gap-1">
+          <IconCozWorkflow />
+          业务逻辑
+        </div>
+      </Radio>
+      <Radio value={Mode.UserInterface}>
+        <div className="flex items-center gap-1">
+          <IconCozPalette />
+          用户界面
+        </div>
+      </Radio>
+    </SegmentTab>
+  );
+};
