@@ -16,8 +16,12 @@
 
 // The @file open source version does not provide UI functions currently.
 // The methods exported in this file are for future expansion.
-import React, { useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
+import {
+  useCurrentModeType,
+  useIDENavigate,
+} from '@coze-project-ide/framework';
 import { IconCozWorkflow, IconCozPalette } from '@coze-arch/coze-design/icons';
 import { SegmentTab, Radio } from '@coze-arch/coze-design';
 
@@ -27,13 +31,41 @@ enum Mode {
 }
 
 export const ModeTab = () => {
-  const [value, setValue] = useState(Mode.BusinessLogic);
+  // 获取当前 URL 对应的模式类型（'dev' 或 'ui-builder'）
+  const currentModeType = useCurrentModeType();
+  // 获取 IDE 导航函数，用于模式切换
+  const IDENavigate = useIDENavigate();
+
+  // 根据当前 URL 模式自动匹配对应的 tab 值
+  // 当 URL 包含 ui-builder 时显示用户界面 tab，否则显示业务逻辑 tab
+  const value = useMemo(
+    () =>
+      currentModeType === 'ui-builder'
+        ? Mode.UserInterface
+        : Mode.BusinessLogic,
+    [currentModeType],
+  );
+
+  // 处理模式切换，使用 IDE 导航函数进行路由跳转
+  const handleModeChange = useCallback(
+    (newValue: Mode) => {
+      if (newValue === Mode.UserInterface) {
+        // 跳转到用户界面模式（ui-builder）
+        IDENavigate('/ui-builder');
+      } else if (newValue === Mode.BusinessLogic) {
+        // 跳转到业务逻辑模式（默认开发模式）
+        IDENavigate('/');
+      }
+    },
+    [IDENavigate],
+  );
+
   return (
     <SegmentTab
       value={value}
       onChange={e => {
         console.log('选中值:', e);
-        setValue(e.target.value);
+        handleModeChange(e.target.value);
       }}
     >
       <Radio value={Mode.BusinessLogic}>

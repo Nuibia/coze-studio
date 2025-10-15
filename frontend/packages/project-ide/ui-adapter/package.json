@@ -15,6 +15,7 @@
   "dependencies": {
     "@coze-arch/coze-design": "0.0.6-alpha.346d77",
     "@coze-project-ide/base-interface": "workspace:*",
+    "@coze-project-ide/framework": "workspace:*",
     "react": "~18.2.0"
   },
   "devDependencies": {
@@ -28,4 +29,3 @@
     "vitest": "~3.0.5"
   }
 }
-

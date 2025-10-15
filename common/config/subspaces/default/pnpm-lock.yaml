@@ -18003,6 +18003,9 @@ importers:
       '@coze-project-ide/base-interface':
         specifier: workspace:*
         version: link:../base-interface
+      '@coze-project-ide/framework':
+        specifier: workspace:*
+        version: link:../framework
       react:
         specifier: 18.2.0
         version: 18.2.0
