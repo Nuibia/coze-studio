@@ -14,5 +14,17 @@
  * limitations under the License.
  */
 
+import React from 'react';
+
 // The @file open source version does not provide user interface functions for the time being. The methods exported in this file are for future expansion.
-export const UIBuilder = (_props: any) => null;
+export const UIBuilder = (_props: any) => (
+  <iframe
+    src="http://127.0.0.1:8889/packages/amis-editor/#/"
+    style={{
+      width: '100%',
+      height: '100%',
+      border: 'none',
+    }}
+    title="amis-editor"
+  />
+);
